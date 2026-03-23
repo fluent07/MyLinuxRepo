@@ -1,0 +1,13 @@
+#!/bin/bash
+
+IGNORE_FILE="/tmp/hypr-ignore-monitor-removes"
+: > "$IGNORE_FILE"
+
+hyprctl monitors | awk '/^Monitor /{print $2}' | grep -Ev '^(eDP|LVDS)' | while read -r mon; do
+    echo "$mon" >> "$IGNORE_FILE"
+    hyprctl keyword monitor "$mon,disable"
+done
+
+sleep 0.2
+hyprctl keyword monitor "eDP-1,1920x1080@144,0x0,1"
+hyprctl dispatch dpms on

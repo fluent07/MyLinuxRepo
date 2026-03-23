@@ -1,0 +1,25 @@
+#!/bin/bash
+
+PROFILE_DIR="$HOME/.config/hypr/monitors/profiles"
+STATE_FILE="$HOME/.config/hypr/monitors/.last-mode"
+
+choice=$(printf "Primary only\nMonitor only\nDuplicate\nExtend" | rofi -dmenu -p "Monitor layout")
+
+case "$choice" in
+  "Primary only")
+    echo "primary-only" > "$STATE_FILE"
+    "$PROFILE_DIR/primary-only.sh"
+    ;;
+  "Monitor only")
+    echo "monitor-only" > "$STATE_FILE"
+    "$PROFILE_DIR/monitor-only.sh"
+    ;;
+  "Duplicate")
+    echo "duplicate" > "$STATE_FILE"
+    "$PROFILE_DIR/duplicate.sh"
+    ;;
+  "Extend")
+    echo "extend" > "$STATE_FILE"
+    "$PROFILE_DIR/extend.sh"
+    ;;
+esac

@@ -1,0 +1,4 @@
+#!/bin/bash
+hyprctl keyword monitor "eDP-1,disable"
+hyprctl keyword monitor "HDMI-A-1,3440x1440@99.98,0x0,1"
+hyprctl dispatch dpms on
